@@ -37,17 +37,5 @@ namespace ClassLibrary
                 return this.sueldo;
             }
         }
-        public static string ObtenerEmpleadoSueldoMaximo(Empleados[] lista, double salarioABuscar)
-        {
-            string empleadoMayorSalario = "";
-            for(int i = 0; i < lista.GetUpperBound(0); i++)
-            {
-                if (lista[i].Sueldo == salarioABuscar)
-                {
-                    empleadoMayorSalario = lista[i].Nombre;
-                }
-            }
-            return empleadoMayorSalario;
-        }
     }
 }

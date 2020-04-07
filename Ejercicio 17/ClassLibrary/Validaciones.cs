@@ -8,39 +8,29 @@ namespace ClassLibrary
 {
     public static class Validaciones
     {
-        public static string ValidarString()
+        public static string ValidarString(string palabra)
         {
             int comprobacion = 0;
-            string palabra = "";
-            bool correcto = true;
-            do
+            if(int.TryParse(palabra,out comprobacion))
             {
-                correcto = true;
-                palabra = Console.ReadLine();
-                if (int.TryParse(palabra, out comprobacion))
-                {
-                    Console.WriteLine("Error. No ha ingresado un nombre. Intente otra vez.");
-                    correcto = false;
-                }
-            } while (!correcto);
-            return palabra;
+                return "";
+            }
+            else
+            {
+                return palabra;
+            }
         }
-        public static double ValidarDouble()
+        public static double ValidarDouble(string numero)
         {
             double comprobacion = 0;
-            string numero = "";
-            bool correcto = true;
-            do
+            if(!double.TryParse(numero,out comprobacion))
             {
-                numero = Console.ReadLine();
-                correcto = true;
-                if (!double.TryParse(numero, out comprobacion))
-                {
-                    Console.WriteLine("Error. No ha ingresado un número válido. Intente otra vez.");
-                    correcto = false;
-                }
-            } while (!correcto);
-            return comprobacion;
+                return -1;
+            }
+            else
+            {
+                return comprobacion;
+            }
         }
     }
 }
