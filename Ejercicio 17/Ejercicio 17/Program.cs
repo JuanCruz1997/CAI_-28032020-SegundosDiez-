@@ -12,7 +12,9 @@ namespace Ejercicio_17
         static void Main(string[] args)
         {
             Console.WriteLine("Base de datos de empleados:");
-            for (int i = 0; i <= Nomina.GetEmpleados.GetUpperBound(0); i++)
+            Nomina n = new Nomina();
+            int i = 0;
+            while (i <= n.GetEmpleados.GetUpperBound(0))
             {
                 Console.WriteLine("Ingrese los datos del empleado " + (i + 1) + ":");
                 Console.WriteLine("Nombre:");
@@ -35,10 +37,11 @@ namespace Ejercicio_17
                         Console.WriteLine("Error. No ha ingresado un número válido. Intente otra vez.");
                     }
                 } while (sueldo == -1);
-                Nomina.GetEmpleados[i] = new Empleados(nombre, sueldo);
+                n.AddEmpleado(nombre, sueldo, i);
+                i++;
             }
-            Empleados empleadoMayorSalario = Nomina.ObtenerEmpleadoMasCaro(Nomina.GetEmpleados);
-            Console.WriteLine("Mayor salario: "+empleadoMayorSalario.Sueldo+"\nEmpleado: "+empleadoMayorSalario.Nombre);
+            Empleados caro = n.ObtenerEmpleadoMasCaro();
+            Console.WriteLine("Mayor salario: "+caro.Sueldo+"\nEmpleado: "+caro.Nombre);
             Console.WriteLine("Pulse cualquier tecla para salir.");
             Console.ReadKey();
         }

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
-    public static class Nomina
+    public class Nomina
     {
         static int tamaño = 5;
         static Empleados[] e = new Empleados[tamaño];
-        public static string Area
+        public string Area
         {
             set
             {
@@ -21,7 +21,7 @@ namespace ClassLibrary
                 return Area;
             }
         }
-        public static string Empresa
+        public string Empresa
         {
             set
             {
@@ -32,7 +32,7 @@ namespace ClassLibrary
                 return Empresa;
             }
         }
-        public static DateTime FechaDePago
+        public DateTime FechaDePago
         {
             set
             {
@@ -43,33 +43,37 @@ namespace ClassLibrary
                 return FechaDePago;
             }
         }
-        public static Empleados[] GetEmpleados
+        public Empleados[] GetEmpleados
         {
             get
             {
                 return e;
             }
         }
-        public static Empleados ObtenerEmpleadoMasCaro(Empleados[] lista)
+        public void AddEmpleado(string nombre, double sueldo, int pos)
+        {
+            e[pos] = new Empleados(nombre, sueldo);
+        }
+        public Empleados ObtenerEmpleadoMasCaro()
         {
             Empleados empleadoMayorSalario = new Empleados("", 0);
             double maxSueldo = 0;
-            for (int i = 0; i < lista.GetUpperBound(0); i++)
+            for (int i = 0; i < e.GetUpperBound(0); i++)
             {
-                if (lista[i].Sueldo < maxSueldo)
+                if (e[i].Sueldo < maxSueldo)
                 {
-                    maxSueldo = lista[i].Sueldo;
+                    maxSueldo = e[i].Sueldo;
                 }
             }
             int pos = 0;
             do
             {
-                if (lista[pos].Sueldo == maxSueldo)
+                if (e[pos].Sueldo == maxSueldo)
                 {
-                    empleadoMayorSalario = lista[pos];
+                    empleadoMayorSalario = e[pos];
                 }
                 pos++;
-            } while (pos < lista.GetUpperBound(0));
+            } while (pos < e.GetUpperBound(0));
             return empleadoMayorSalario;
         }
     }
